@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Știri Euro 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #e6ecf8, #ffffff);
+      color: #1c1c1c;
+      animation: fadeInBody 0.8s ease;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background: #002b80;
+      color: white;
+      padding: 25px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.4em;
+      font-weight: 700;
+    }
+
+    .back-button {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      color: #002b80;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .back-button:hover {
+      background: #f1f1f1;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .news-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(6px);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+      margin-bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .news-image {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .news-content {
+      padding: 24px;
+    }
+
+    .news-title {
+      font-size: 1.7em;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #002b80;
+    }
+
+    .news-date {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    .news-description {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .read-more {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #002b80;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .read-more:hover {
+      background-color: #0040b5;
+    }
+
+    @media (min-width: 768px) {
+      .news-card {
+        flex-direction: row;
+      }
+
+      .news-image {
+        width: 40%;
+        height: auto;
+      }
+
+      .news-content {
+        width: 60%;
+      }
+    }
+
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .popup-content {
+      background: white;
+      max-width: 650px;
+      width: 100%;
+      padding: 35px;
+      border-radius: 14px;
+      position: relative;
+      animation: fadeIn 0.4s ease;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .popup-content h2 {
+      margin-top: 0;
+      color: #002b80;
+      font-size: 1.8em;
+    }
+
+    .popup-content p {
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="back-button">🏆 Clasament</a>
+  <h1>📰 Știri Euro 2025 RL 1 Romania</h1>
+</header>
+
+<div class="container">
+
+  <!-- ȘTIRE 1 -->
+  <div class="news-card">
+    <img src="poze/RO_2.png" alt="România" class="news-image">
+    <div class="news-content">
+      <div class="news-title">România în Grupa A alături de Germania! Cine vor fi următoarele două echipe?</div>
+      <div class="news-date">27 iunie 2025</div>
+      <div class="news-description">
+        Grupa A începe cu emoții mari pentru suporterii tricolori!
+      </div>
+      <a class="read-more" onclick="openPopup(
+        'România în Grupa A alături de Germania!',
+        `Grupa A începe cu emoții mari pentru suporterii tricolori! România a fost repartizată în aceeași grupă cu puternica națională a Germaniei, una dintre favoritele la câștigarea competiției.
+
+Deschiderea turneului va fi marcată de duelul dintre România și o echipă care urmează să fie decisă în următoarele zile. La fel ca și al patrulea loc din grupă, acesta este încă neconfirmat, dar organizatorii anunță că negocierile cu reprezentanții mai multor echipe sunt în plină desfășurare.
+
+🔍 Cine va completa Grupa A?
+
+Speculațiile circulă intens în comunitatea fotbalistică online. Printre echipele vehiculate se află Olanda, Croația și Turcia — naționale redutabile care pot da peste cap calculele calificării.
+
+⚽ România vs Germania – finala... din grupe?
+Un duel ce ar fi putut fi demn de semifinale se va disputa deja în faza grupelor. Tricolorii sunt hotărâți să demonstreze că pot înfrunta orice adversar, iar meciul cu Germania va fi un test de maturitate pentru echipa noastră.`
+      )">Citește mai mult</a>
+    </div>
+  </div>
+
+  <!-- ȘTIRE 2 -->
+  <div class="news-card">
+    <img src="poze/Muntenegro.png" alt="Muntenegru" class="news-image">
+    <div class="news-content">
+      <div class="news-title">Șoc în fotbalul european: Muntenegru zdrobește Franța cu 7-1 într-un amical de pregătire!</div>
+      <div class="news-date">30 iunie 2025</div>
+      <div class="news-description">
+        29 iunie 2025 – Fotbalul mondial a fost zguduit de un rezultat absolut neașteptat în meciul amical disputat aseară între Muntenegru și Franța.
+      </div>
+      <a class="read-more" onclick="openPopup(
+        'Șoc în fotbalul european: Muntenegru zdrobește Franța cu 7-1 într-un amical de pregătire!',
+        `29 iunie 2025 – Fotbalul mondial a fost zguduit de un rezultat absolut neașteptat în meciul amical disputat aseară între Muntenegru și Franța. Naționala muntenegreană a învins categoric vicecampioana mondială cu scorul neverosimil de 7-1, într-un meci disputat la Podgorica.
+
+🔥 O demonstrație de forță fără precedent
+Muntenegru a dominat partida de la un capăt la altul, marcând nu mai puțin de cinci goluri în prima repriză. Fanii prezenți pe stadionul din Podgorica au trăit un adevărat vis, în timp ce selecționerul Franței părea complet depășit de situație.
+
+🎙 Reacții din partea ambelor tabere
+
+„Nu-mi vine să cred ce s-a întâmplat. Am jucat cu inima, iar publicul ne-a împins de la spate”, a declarat căpitanul Muntenegrului la finalul meciului.
+
+De cealaltă parte, Franța a fost de nerecunoscut, cu o apărare visătoare și un atac lipsit de idei. Singurul gol al „Les Bleus” a venit în minutul 89, dintr-un penalty discutabil.
+
+📉 Probleme pentru Franța înainte de Euro 2025
+Acest rezultat vine la doar câteva zile după ce Franța și-a anunțat lotul pentru Euro 2025, un lot considerat de specialiști drept unul dintre cele mai solide din competiție. Înfrângerea usturătoare ridică însă semne de întrebare privind coeziunea și forma echipei.`
+      )">Citește mai mult</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup()">×</button>
+    <h2 id="popup-title">Titlu</h2>
+    <p id="popup-text">Conținutul complet al știrii apare aici.</p>
+  </div>
+</div>
+
+<script>
+  function openPopup(title, text) {
+    document.getElementById('popup-title').textContent = title;
+    document.getElementById('popup-text').textContent = text;
+    document.getElementById('popup').style.display = 'flex';
+  }
+
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

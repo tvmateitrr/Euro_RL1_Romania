@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Euro 2025 RL 1 Romania</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #004aad, #00b4d8);
+      color: white;
+      opacity: 0;
+      animation: fadeInBody 1s ease-in forwards;
+    }
+
+    @keyframes fadeInBody {
+      to {
+        opacity: 1;
+      }
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px 20px;
+      background-color: rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .news {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .opening-match {
+      text-align: center;
+      background-color: #ffffff10;
+      padding: 20px;
+      font-size: 1.5em;
+      margin: 20px auto;
+      max-width: 400px;
+      border: 2px solid white;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    }
+
+    .button-news {
+      text-align: center;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .button-news a, .button-news button {
+      background-color: white;
+      color: #004aad;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: background-color 0.3s, color 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1em;
+    }
+
+    .button-news a:hover, .button-news button:hover {
+      background-color: #e6e6e6;
+      color: #003580;
+    }
+
+    .groups-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .group {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+
+    .group:hover {
+      transform: scale(1.02);
+    }
+
+    .group h2 {
+      text-align: center;
+      border-bottom: 1px solid white;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    .table {
+      margin-bottom: 15px;
+    }
+
+    .table table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      background-color: rgba(0,0,0,0.2);
+      margin-bottom: 15px;
+    }
+
+    .table th, .table td {
+      padding: 8px;
+      border: 1px solid white;
+    }
+
+    .matches {
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .matches h3 {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 1.1em;
+      text-transform: uppercase;
+    }
+
+    .match {
+      text-align: center;
+      padding: 5px 0;
+      border-bottom: 1px dashed white;
+      font-size: 1.1em;
+    }
+
+    .match:last-child {
+      border-bottom: none;
+    }
+
+    .tournament-info {
+      padding: 30px;
+      text-align: center;
+      background-color: rgba(255,255,255,0.1);
+      margin: 0 20px 40px;
+      border-radius: 12px;
+    }
+
+    .tournament-info h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .tournament-info p {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .tournament-info p:last-child {
+      margin-top: 20px;
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.2);
+      font-size: 0.9em;
+    }
+
+    /* Popup overlay */
+    #popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+    }
+
+    #popup-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Popup content */
+    #popup-content {
+      background-color: #004aad;
+      color: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 0 30px #0077ff;
+      text-align: center;
+      position: relative;
+      animation: fadeInPopup 0.3s ease forwards;
+    }
+
+    @keyframes fadeInPopup {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+
+    #popup-content h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    #popup-content .match {
+      font-size: 1.2em;
+      border-bottom: none;
+      padding: 10px 0;
+    }
+
+    #popup-content .matches {
+      margin-bottom: 25px;
+      background: none;
+      padding: 0;
+    }
+
+    #popup-content button.close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #ff4444;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      line-height: 1;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    #popup-content button.close-btn:hover {
+      background: #cc0000;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Euro 2025 RL 1 Romania</h1>
+</header>
+
+<div class="news">⚠️ Mai sunt <strong>7 locuri libere</strong> în competiție!</div>
+<div class="opening-match">🎉 Meciul de deschidere: <strong>Romania vs De decis</strong></div>
+
+<div class="button-news">
+  <a href="stiri.html">📰 Vezi ultimele știri</a>
+  <button id="open-popup-btn">🎯 Faza eliminatorie</button>
+</div>
+
+<section class="groups-container">
+
+  <!-- Grupa A -->
+  <div class="group">
+    <h2>Grupa A</h2>
+    <div class="table">
+      <table id="grupaA">
+        <tr><th>Echipa</th><th>Pts</th><th>MJ</th></tr>
+        <tr><td>Romania</td><td>0</td><td>0</td></tr>
+        <tr><td>Germania</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+      </table>
+    </div>
+    <div class="matches">
+      <h3>Meciuri</h3>
+      <div class="match">Etapa 1: Romania vs De decis</div>
+      <div class="match">Etapa 1: Germania vs De decis</div>
+      <div class="match">Etapa 2: Romania vs De decis</div>
+      <div class="match">Etapa 2: Germania vs De decis</div>
+      <div class="match">Etapa 3: Romania vs Germania</div>
+      <div class="match">Etapa 3: De decis vs De decis</div>
+    </div>
+  </div>
+
+  <!-- Grupa B -->
+  <div class="group">
+    <h2>Grupa B</h2>
+    <div class="table">
+      <table id="grupaB">
+        <tr><th>Echipa</th><th>Pts</th><th>MJ</th></tr>
+        <tr><td>Anglia</td><td>0</td><td>0</td></tr>
+        <tr><td>Muntenegru</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+      </table>
+    </div>
+    <div class="matches">
+      <h3>Meciuri</h3>
+      <div class="match">Etapa 1: Anglia vs De decis</div>
+      <div class="match">Etapa 1: Muntenegru vs De decis</div>
+      <div class="match">Etapa 2: Anglia vs De decis</div>
+      <div class="match">Etapa 2: Muntenegru vs De decis</div>
+      <div class="match">Etapa 3: Anglia vs Muntenegru</div>
+      <div class="match">Etapa 3: De decis vs De decis</div>
+    </div>
+  </div>
+
+  <!-- Grupa C -->
+  <div class="group">
+    <h2>Grupa C</h2>
+    <div class="table">
+      <table id="grupaC">
+        <tr><th>Echipa</th><th>Pts</th><th>MJ</th></tr>
+        <tr><td>Spania</td><td>0</td><td>0</td></tr>
+        <tr><td>Portugalia</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+      </table>
+    </div>
+    <div class="matches">
+      <h3>Meciuri</h3>
+      <div class="match">Etapa 1: Spania vs De decis</div>
+      <div class="match">Etapa 1: Portugalia vs De decis</div>
+      <div class="match">Etapa 2: Spania vs De decis</div>
+      <div class="match">Etapa 2: Portugalia vs De decis</div>
+      <div class="match">Etapa 3: Spania vs Portugalia</div>
+      <div class="match">Etapa 3: De decis vs De decis</div>
+    </div>
+  </div>
+
+  <!-- Grupa D -->
+  <div class="group">
+    <h2>Grupa D</h2>
+    <div class="table">
+      <table id="grupaD">
+        <tr><th>Echipa</th><th>Pts</th><th>MJ</th></tr>
+        <tr><td>Moldova</td><td>0</td><td>0</td></tr>
+        <tr><td>Franta</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+        <tr><td>De decis</td><td>0</td><td>0</td></tr>
+      </table>
+    </div>
+    <div class="matches">
+      <h3>Meciuri</h3>
+      <div class="match">Etapa 1: Moldova vs De decis</div>
+      <div class="match">Etapa 1: Franta vs De decis</div>
+      <div class="match">Etapa 2: Moldova vs De decis</div>
+      <div class="match">Etapa 2: Franta vs De decis</div>
+      <div class="match">Etapa 3: Moldova vs Franta</div>
+      <div class="match">Etapa 3: De decis vs De decis</div>
+    </div>
+  </div>
+
+</section>
+
+<section class="tournament-info">
+  <h2>📢 Informații Turneu</h2>
+  <p>✅ Echipe înscrise: <strong>8 din 16</strong></p>
+  <p>📅 Total meciuri în grupe: <strong>24</strong></p>
+  <p>🏆 Finala se joacă pe <strong>12 August 2025</strong></p>
+  <p>⚡ Cine va ridica trofeul? Fii parte din povestea Euro RL 1 Romania!</p>
+</section>
+
+<!-- Popup Knockout Bracket -->
+<div id="popup-overlay">
+  <div id="popup-content" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <button class="close-btn" aria-label="Închide fereastra">&times;</button>
+    <h2 id="popup-title">🎯 Faza Eliminatorie</h2>
+
+    <div class="matches">
+      <h3>🟨 Sferturi de finală</h3>
+      <div class="match">Sfert 1: To be decided vs To be decided</div>
+      <div class="match">Sfert 2: To be decided vs To be decided</div>
+      <div class="match">Sfert 3: To be decided vs To be decided</div>
+      <div class="match">Sfert 4: To be decided vs To be decided</div>
+    </div>
+
+    <div class="matches">
+      <h3>🟥 Semifinale</h3>
+      <div class="match">Semifinala 1: TBD vs TBD</div>
+      <div class="match">Semifinala 2: TBD vs TBD</div>
+    </div>
+
+    <div class="matches">
+      <h3>🏆 Finală</h3>
+      <div class="match">Finala: TBD vs TBD</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 RL 1 Romania. Toate drepturile rezervate.
+</footer>
+
+<script>
+  // Sortează tabelele grupelor după puncte și meciuri jucate
+  function sorteazaTabela(idTabela) {
+    const tabel = document.getElementById(idTabela);
+    const randuri = Array.from(tabel.rows).slice(1); // Exclude headerul
+    randuri.sort((a, b) => {
+      const puncteA = parseInt(a.cells[1].innerText);
+      const puncteB = parseInt(b.cells[1].innerText);
+      if (puncteB !== puncteA) return puncteB - puncteA;
+      const mjA = parseInt(a.cells[2].innerText);
+      const mjB = parseInt(b.cells[2].innerText);
+      return mjA - mjB;
+    });
+    randuri.forEach(row => tabel.appendChild(row));
+  }
+
+  ['grupaA', 'grupaB', 'grupaC', 'grupaD'].forEach(id => sorteazaTabela(id));
+
+  // Popup logic
+  const popupOverlay = document.getElementById('popup-overlay');
+  const openPopupBtn = document.getElementById('open-popup-btn');
+  const closeBtn = popupOverlay.querySelector('.close-btn');
+
+  openPopupBtn.addEventListener('click', () => {
+    popupOverlay.classList.add('active');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popupOverlay.classList.remove('active');
+  });
+
+  // Close popup on clicking outside the popup content
+  popupOverlay.addEventListener('click', (e) => {
+    if (e.target === popupOverlay) {
+      popupOverlay.classList.remove('active');
+    }
+  });
+
+  // Close popup on ESC key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && popupOverlay.classList.contains('active')) {
+      popupOverlay.classList.remove('active');
+    }
+  });
+</script>
+
+</body>
+</html>
