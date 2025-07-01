@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🏟️ Stadioane Euro 2025</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #003580, #00b4d8);
+      color: white;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Bara meniului de sus */
+    nav {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      background-color: white;
+      color: #004aad;
+      text-decoration: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1em;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      background-color: #e6e6e6;
+      color: #003580;
+    }
+
+    /* Header cu titlul centrat jos */
+    header {
+      padding: 30px 20px 40px;
+      text-align: center;
+      background-color: rgba(0,0,0,0.3);
+      box-shadow: inset 0 -5px 10px -5px black;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .stadium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      padding: 0 40px 40px;
+    }
+
+    .stadium-card {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(0,0,0,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .stadium-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .stadium-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .stadium-card h2 {
+      margin: 0;
+      padding: 15px;
+      text-align: center;
+      background-color: rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      background-color: rgba(0,0,0,0.2);
+    }
+
+    /* Popup styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup-overlay.active {
+      display: flex;
+    }
+
+    .popup-content {
+      background: #004aad;
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      animation: popupIn 0.3s ease;
+      position: relative;
+      box-shadow: 0 0 30px #00c3ff;
+    }
+
+    @keyframes popupIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .popup-content h2 {
+      margin-top: 0;
+    }
+
+    .popup-content p {
+      margin: 10px 0;
+    }
+
+    .popup-content img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .close-btn:hover {
+      background: #cc0000;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Acasă</a>
+  <a href="stiri.html">Știri</a>
+</nav>
+
+<header>
+  <h1>🏟️ Stadioanele Euro 2025</h1>
+</header>
+
+<div class="stadium-grid">
+  <div class="stadium-card" onclick="showPopup(0)">
+    <img src="Stadioane/Arena.jpeg" alt="Arena Națională" />
+    <h2>Arena Națională – București</h2>
+  </div>
+  <div class="stadium-card" onclick="showPopup(1)">
+    <img src="Stadioane/Cluj.jpg" alt="Cluj Arena" />
+    <h2>Cluj Arena – Cluj-Napoca</h2>
+  </div>
+  <div class="stadium-card" onclick="showPopup(2)">
+    <img src="Stadioane/Ilie_Oana.jpg" alt="Ilie Oană" />
+    <h2>Ilie Oană – Ploiești</h2>
+  </div>
+</div>
+
+<!-- Popup info -->
+<div class="popup-overlay" id="popup">
+  <div class="popup-content">
+    <button class="close-btn" onclick="hidePopup()">×</button>
+    <h2 id="popup-title">Titlu</h2>
+    <img id="popup-img" src="" alt="" />
+    <p id="popup-info">Detalii stadion</p>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 RL 1 Romania. Toate drepturile rezervate.
+</footer>
+
+<script>
+  const stadiums = [
+    {
+      title: "Arena Națională – București",
+      info: "Cel mai mare stadion din România, cu o capacitate de peste 55.000 locuri. Găzduiește deschiderile și finalele importante.",
+      img: "Stadioane/Arena.jpeg"
+    },
+    {
+      title: "Cluj Arena – Cluj-Napoca",
+      info: "Un stadion modern cu 30.000 de locuri, amplasat în inima Transilvaniei. Găzduiește meciuri de grupă și sferturi.",
+      img: "Stadioane/Cluj.jpg"
+    },
+    {
+      title: "Ilie Oană – Ploiești",
+      info: "Un stadion compact și modern cu o atmosferă impresionantă. Capacitate de aproximativ 15.000 locuri.",
+      img: "Stadioane/Ilie_Oana.jpg"
+    }
+  ];
+
+  function showPopup(index) {
+    const stadium = stadiums[index];
+    document.getElementById("popup-title").textContent = stadium.title;
+    document.getElementById("popup-info").textContent = stadium.info;
+    const popupImg = document.getElementById("popup-img");
+    popupImg.src = stadium.img;
+    popupImg.alt = stadium.title;
+    document.getElementById("popup").classList.add("active");
+  }
+
+  function hidePopup() {
+    document.getElementById("popup").classList.remove("active");
+  }
+</script>
+
+</body>
+</html>
