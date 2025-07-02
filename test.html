@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🏆 EURO 2025 - RL 1 Romania</title>
+  <style>
+    :root {
+      --bg: #003153;
+      --text: #f0f0f0;
+      --accent: #ffd700;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #001f3f;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+
+    nav a {
+      color: var(--text);
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    #toggleMode {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .hero {
+      height: 90vh;
+      background: linear-gradient(to bottom right, #004aad, #001f3f);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      perspective: 1000px;
+    }
+
+    .card3d {
+      width: 340px;
+      height: 200px;
+      background: #012;
+      border: 2px solid #ffd700;
+      border-radius: 15px;
+      transform: rotateY(0deg);
+      transition: transform 0.8s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .card3d:hover {
+      transform: rotateY(180deg);
+    }
+
+    .section {
+      padding: 2rem;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    canvas {
+      background: #001f3f;
+      display: block;
+      margin: auto;
+      border: 2px solid #ffd700;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: #012;
+      color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+      z-index: 999;
+      transition: transform 0.3s ease;
+      max-width: 90vw;
+    }
+
+    .popup.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .btn {
+      background: var(--accent);
+      color: black;
+      border: none;
+      padding: 0.6rem 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .game-area {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    #score {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏆 EURO 2025 - RL 1 Romania</h1>
+    <nav>
+      <a href="#graf">📊 Popularitate</a>
+      <a href="#joc">⚽ Clicker</a>
+      <a href="#" onclick="openPopup()">📜 Regulament</a>
+    </nav>
+    <button id="toggleMode">🌙 Mod</button>
+  </header>
+
+  <section class="hero">
+    <div class="card3d">
+      ⚽ Bine ai venit la Turneul Euro 2025 al comunității RL 1 Romania! 🇷🇴
+    </div>
+  </section>
+
+  <section id="graf" class="section">
+    <h2>📈 Popularitatea echipelor</h2>
+    <canvas id="myCanvas" width="600" height="300"></canvas>
+  </section>
+
+  <section id="joc" class="section">
+    <h2>⚽ Adună mingi pentru echipa ta!</h2>
+    <p>Click pentru a colecta mingi de antrenament 🏃‍♂️</p>
+    <div class="game-area">
+      <div id="score">0 mingi</div>
+      <button class="btn" onclick="addPoint()">+1 Mingeee!</button>
+    </div>
+  </section>
+
+  <div class="popup" id="infoPopup">
+    <h2>📜 Regulamentul Turneului</h2>
+    <ul>
+      <li>🕒 Meciurile se joacă în format 5+1 pe Discord</li>
+      <li>⚽ Durata meciului: 2 reprize x 5 minute</li>
+      <li>📌 Faza grupelor urmată de eliminatorii</li>
+      <li>🏅 Fair-play obligatoriu</li>
+      <li>🧠 Adminii pot ajusta programul în funcție de situații</li>
+    </ul>
+    <button class="btn" onclick="closePopup()">Închide</button>
+  </div>
+
+  <script>
+    // Toggle Dark Mode
+    const toggleMode = document.getElementById('toggleMode');
+    toggleMode.onclick = () => {
+      document.body.classList.toggle('light-mode');
+      if (document.body.classList.contains('light-mode')) {
+        document.documentElement.style.setProperty('--bg', '#ffffff');
+        document.documentElement.style.setProperty('--text', '#111');
+      } else {
+        document.documentElement.style.setProperty('--bg', '#003153');
+        document.documentElement.style.setProperty('--text', '#f0f0f0');
+      }
+    };
+
+    // Canvas Grafic (Simulare scoruri/popularitate)
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    const points = [];
+
+    for (let i = 0; i < 40; i++) {
+      points.push({
+        x: Math.random() * 600,
+        y: Math.random() * 300,
+        dx: Math.random() * 2,
+        dy: Math.random() * 2,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      points.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffd700";
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // Joc Clicker
+    let score = 0;
+    function addPoint() {
+      score++;
+      document.getElementById('score').innerText = `${score} mingi`;
+    }
+
+    // Popup info regulament
+    function openPopup() {
+      document.getElementById('infoPopup').classList.add('active');
+    }
+
+    function closePopup() {
+      document.getElementById('infoPopup').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
