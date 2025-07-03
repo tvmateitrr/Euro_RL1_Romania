@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faza Eliminatorie - Euro 2025 RL 1 Romania</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Background animat */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #004aad, #0077b6, #00b4d8, #90e0ef);
+      background-size: 400% 400%;
+      animation: gradientFlow 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Animație fade-in */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    header {
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      font-size: 32px;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      margin: 0 15px;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .container {
+      padding: 30px;
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    .stage {
+      margin-bottom: 50px;
+    }
+
+    .stage h2 {
+      color: #ffffff;
+      border-left: 6px solid #ffffff;
+      padding-left: 10px;
+      margin-bottom: 15px;
+    }
+
+    .match {
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .team {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .vs {
+      margin: 0 10px;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Faza Eliminatorie - Euro 2025 RL 1 Romania</h1>
+    <nav>
+      <a href="index.html">📊 Clasament</a>
+      <a href="stadioane.html">🏟️ Stadioane</a>
+      <a href="stiri.html">📰 Vezi știri</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="stage">
+      <h2>🎯 Sferturi de finală</h2>
+      <div class="match">
+        <span class="team">De decis</span>
+        <span class="vs">vs</span>
+        <span class="team">De decis</span>
+      </div>
+      <div class="match">
+        <span class="team">De decis</span>
+        <span class="vs">vs</span>
+        <span class="team">De decis</span>
+      </div>
+      <div class="match">
+        <span class="team">De decis</span>
+        <span class="vs">vs</span>
+        <span class="team">De decis</span>
+      </div>
+      <div class="match">
+        <span class="team">De decis</span>
+        <span class="vs">vs</span>
+        <span class="team">De decis</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <h2>⚔️ Semifinale</h2>
+      <div class="match">
+        <span class="team">Câștigător Meci 1</span>
+        <span class="vs">vs</span>
+        <span class="team">Câștigător Meci 2</span>
+      </div>
+      <div class="match">
+        <span class="team">Câștigător Meci 3</span>
+        <span class="vs">vs</span>
+        <span class="team">Câștigător Meci 4</span>
+      </div>
+    </div>
+
+    <div class="stage">
+      <h2>🏆 Finală</h2>
+      <div class="match">
+        <span class="team">Câștigător Semifinala 1</span>
+        <span class="vs">vs</span>
+        <span class="team">Câștigător Semifinala 2</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

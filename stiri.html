@@ -159,6 +159,8 @@
       position: relative;
       animation: fadeIn 0.4s ease;
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .popup-content h2 {
@@ -198,6 +200,48 @@
 
 <div class="container">
 
+  <!-- ȘTIRE 5 -->
+  <div class="news-card">
+    <img src="poze/Stadion.png" alt="Muntenegru" class="news-image">
+    <div class="news-content">
+      <div class="news-title">Lucrările au început… dar va fi gata la timp pentru marele turneu?</div>
+      <div class="news-date">4 Iulie 2025</div>
+      <div class="news-description">
+        București, 4 iulie 2025 — Într-o decizie fără precedent, organizatorii Euro 2025 RL 1 România au decis să facă un lucru extraordinar și aproape imposibil într-un interval de timp atât de scurt.
+      </div>
+      <a class="read-more" onclick="openPopup(
+        'Lucrările au început… dar va fi gata la timp pentru marele turneu?',
+        `București, 3 iulie 2025 — Într-o decizie fără precedent, organizatorii Euro 2025 RL 1 România au decis să demoleze vechea Arenă Națională și să construiască una complet nouă, de la zero, pe același amplasament. Cu doar câteva luni până la startul competiției, proiectul uriaș se află într-o cursă contratimp, iar întrebarea care planează asupra tuturor este simplă:
+va fi gata la timp?
+
+🔨 Un proiect colosal
+Noua arenă, descrisă drept un simbol al renașterii fotbalului românesc, va avea:
+
+Capacitate de 75.000 de locuri;
+
+Acoperiș retractabil și ecrane LED panoramice;
+
+Sisteme ultramoderne pentru transmisii, securitate și VAR;
+
+O zonă interactivă pentru fani, cu muzeu și spații comerciale.
+
+Construcția a început oficial în primăvara lui 2024, iar muncitorii lucrează 24/7, în trei schimburi, pentru a respecta termenul-limită: 1 iunie 2025.
+
+⏱️ Cursa contracronometru
+Cu doar câteva zile rămase, orice întârziere ar putea fi catastrofală. Jucătorii cer testarea completă a instalațiilor cu cel puțin câteva zile înainte de primul meci. Riscul unei inaugurări grăbite planează asupra proiectului, iar presiunea crește.
+
+🎙️ Reacții din culise
+„Este o nebunie frumoasă. Dar dacă reușim, România va da lovitura!” – a declarat un oficial din comitetul de organizare.
+
+„Muncim pe rupte. E șantier non-stop, chiar și noaptea. Toți vrem ca stadionul să fie gata și să arate impecabil.” – spune un muncitor din echipa de construcție.
+
+🇷🇴 Totul sau nimic
+Noua Arenă Națională este mai mult decât un stadion: e o declarație de ambiție, mândrie și curaj. România vrea să uimească Europa, dar…
+va fi acest colos gata la timp pentru cel mai mare turneu RL din istorie?`
+      )">Citește mai mult</a>
+    </div>
+  </div>
+
   <!-- ȘTIRE 4 -->
   <div class="news-card">
     <img src="poze/Echpament_muntenegru.png" alt="Muntenegru" class="news-image">
@@ -217,13 +261,9 @@ Iar acum avem și echipamentul nostru oficial! Roșu, curat, personalizat. Intr�
     </div>
   </div>
 
-
-
-
-
   <!-- ȘTIRE 3 -->
   <div class="news-card">
-    <img src="poze/imagine.png" alt="Muntenegru" class="news-image">
+    <img src="poze/imagine.png" alt="Spania" class="news-image">
     <div class="news-content">
       <div class="news-title">Spania vine la EURO cu un lot echilibrat și plin de superstaruri: Apex și Zindy conduc ofensiva!</div>
       <div class="news-date">2 Iulie 2025</div>
@@ -243,41 +283,27 @@ Antrenamentele intense, unitatea din grup și forma bună a jucătorilor au adus
     </div>
   </div>
 
-
-
-
-
   <!-- ȘTIRE 2 -->
   <div class="news-card">
     <img src="poze/Muntenegro.png" alt="Muntenegru" class="news-image">
     <div class="news-content">
-      <div class="news-title">Șoc în fotbalul european: Muntenegru zdrobește Franța cu 7-1 într-un amical de pregătire!</div>
-      <div class="news-date">30 iunie 2025</div>
+      <div class="news-title">Muntenegru bate Franța în amical 7-1</div>
+      <div class="news-date">1 Iulie 2025</div>
       <div class="news-description">
-        29 iunie 2025 – Fotbalul mondial a fost zguduit de un rezultat absolut neașteptat în meciul amical disputat aseară între Muntenegru și Franța.
+        Într-un meci amical surprinzător, Muntenegru a învins Franța cu scorul zdrobitor de 7-1.
       </div>
       <a class="read-more" onclick="openPopup(
-        'Șoc în fotbalul european: Muntenegru zdrobește Franța cu 7-1 într-un amical de pregătire!',
-        `29 iunie 2025 – Fotbalul mondial a fost zguduit de un rezultat absolut neașteptat în meciul amical disputat aseară între Muntenegru și Franța. Naționala muntenegreană a învins categoric vicecampioana mondială cu scorul neverosimil de 7-1, într-un meci disputat la Podgorica.
+        'Muntenegru bate Franța în amical 7-1',
+        `Meciul amical dintre Muntenegru și Franța a fost o adevărată demonstrație de forță din partea muntenegrenilor. Cu o apărare solidă și un atac fulminant, Muntenegru a controlat partida de la început până la sfârșit.
 
-🔥 O demonstrație de forță fără precedent
-Muntenegru a dominat partida de la un capăt la altul, marcând nu mai puțin de cinci goluri în prima repriză. Fanii prezenți pe stadionul din Podgorica au trăit un adevărat vis, în timp ce selecționerul Franței părea complet depășit de situație.
+Franța, campioana mondială en-titre, a fost surprinsă și nu a reușit să găsească soluții pentru a opri avalanșa de goluri.
 
-🎙 Reacții din partea ambelor tabere
-
-„Nu-mi vine să cred ce s-a întâmplat. Am jucat cu inima, iar publicul ne-a împins de la spate”, a declarat căpitanul Muntenegrului la finalul meciului.
-
-De cealaltă parte, Franța a fost de nerecunoscut, cu o apărare visătoare și un atac lipsit de idei. Singurul gol al „Les Bleus” a venit în minutul 89, dintr-un penalty discutabil.
-
-📉 Probleme pentru Franța înainte de Euro 2025
-Acest rezultat vine la doar câteva zile după ce Franța și-a anunțat lotul pentru Euro 2025, un lot considerat de specialiști drept unul dintre cele mai solide din competiție. Înfrângerea usturătoare ridică însă semne de întrebare privind coeziunea și forma echipei.`
+Rezultatul a stârnit reacții neașteptate în lumea fotbalului RL, iar Muntenegru a devenit rapid una dintre favoritele pentru Euro 2025.`
       )">Citește mai mult</a>
     </div>
   </div>
 
-
-
-  <!-- ȘTIRE 1 -->
+ <!-- ȘTIRE 1 -->
   <div class="news-card">
     <img src="poze/RO_2.png" alt="România" class="news-image">
     <div class="news-content">
@@ -301,8 +327,6 @@ Un duel ce ar fi putut fi demn de semifinale se va disputa deja în faza grupelo
       )">Citește mai mult</a>
     </div>
   </div>
-
-  
 
 </div>
 
