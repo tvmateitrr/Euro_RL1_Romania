@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>🏟️ Stadioane Euro 2025</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #003580, #00b4d8);
       color: white;
       animation: fadeIn 1s ease-in;
+      background: linear-gradient(-45deg, #003580, #0077b6, #00b4d8, #90e0ef);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite, fadeIn 1s ease-in;
     }
 
     @keyframes fadeIn {
@@ -18,7 +25,12 @@
       to { opacity: 1; }
     }
 
-    /* Bara meniului de sus */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     nav {
       background-color: rgba(0, 0, 0, 0.4);
       padding: 10px 40px;
@@ -40,9 +52,7 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       transition: background-color 0.3s, color 0.3s;
-      font-family: 'Segoe UI', sans-serif;
       font-size: 1em;
-      white-space: nowrap;
     }
 
     nav a:hover {
@@ -50,7 +60,6 @@
       color: #003580;
     }
 
-    /* Header cu titlul centrat jos */
     header {
       padding: 30px 20px 40px;
       text-align: center;
@@ -61,7 +70,6 @@
 
     header h1 {
       font-size: 3em;
-      margin: 0;
       text-shadow: 2px 2px 8px black;
     }
 
@@ -106,7 +114,6 @@
       background-color: rgba(0,0,0,0.2);
     }
 
-    /* Popup styles */
     .popup-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -193,8 +200,8 @@
     <h2>Arena Națională – București</h2>
   </div>
   <div class="stadium-card" onclick="showPopup(1)">
-    <img src="Stadioane/Cluj.jpg" alt="Cluj Arena" />
-    <h2>Cluj Arena – Cluj-Napoca</h2>
+    <img src="Stadioane/Ghencea.png" alt="Stadionul Steaua" />
+    <h2>Stadionul Steaua – București</h2>
   </div>
   <div class="stadium-card" onclick="showPopup(2)">
     <img src="Stadioane/Ilie_Oana.jpg" alt="Ilie Oană" />
@@ -202,7 +209,6 @@
   </div>
 </div>
 
-<!-- Popup info -->
 <div class="popup-overlay" id="popup">
   <div class="popup-content">
     <button class="close-btn" onclick="hidePopup()">×</button>
@@ -224,9 +230,9 @@
       img: "Stadioane/Arena.jpeg"
     },
     {
-      title: "Cluj Arena – Cluj-Napoca",
-      info: "Un stadion modern cu 30.000 de locuri, amplasat în inima Transilvaniei. Găzduiește meciuri de grupă și sferturi.",
-      img: "Stadioane/Cluj.jpg"
+      title: "Stadionul Steaua – București",
+      info: "Stadion modern inaugurat în 2021, cu o capacitate de 31.000 locuri. Găzduiește meciuri de grupă și optimile turneului.",
+      img: "Stadioane/Ghencea.png"
     },
     {
       title: "Ilie Oană – Ploiești",
